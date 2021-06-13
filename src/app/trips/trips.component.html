@@ -1,0 +1,75 @@
+<div class="row gy-4">
+	<div class="col-12 col-lg-8">
+		<div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+			<div class="app-card-body p-4 w-100">
+				<table class="table table-responsive">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Bus Code</th>
+							<th>Source Stop</th>
+							<th>Destination Stop</th>
+							<th>Duration</th>
+							<th>Fare</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let trip of trips; ngForTrackBy:id; let i = index">
+							<td>{{i+1}}</td>
+							<td>{{trip.bus.code}}</td>
+							<td>{{trip.sourceStop.name}}</td>
+							<td>{{trip.destStop.name}}</td>
+							<td>{{trip.journeyTime}}</td>
+							<td>{{trip.fare}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-lg-4">
+		<div class="card shadow-sm d-flex flex-column align-items-start">
+			<div class="card-body p-4 w-100">
+				<form #f="ngForm" [formGroup]="addTripForm" (ngSubmit)="onSubmit()">
+					<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && errorMessage != ''">
+						{{ errorMessage }}
+					</div>
+					<div class="alert alert-success alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && successMessage != ''">
+						{{ successMessage }}
+					</div>
+					<div class="mb-3">
+						<label for="busCode" class="form-label">Bus Code</label>
+						<select class="form-select" id="busCode" formControlName="busId" [value]="" required="required">
+							<option *ngFor="let bus of buses" [ngValue]="bus.id">{{bus.code}}</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="sourceStop" class="form-label">Source Stop</label>
+						<select class="form-select" id="sourceStop" formControlName="sourceStopId" [value]="" required="required" [(ngModel)]="selectedStop[1]">
+							<option *ngFor="let stop of stops" [ngValue]="stop.id" [disabled]="stop.id == selectedStop[2]">{{stop.name}}</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="destinationStop" class="form-label">Destination Stop</label>
+						<select class="form-select" id="destinationStop" formControlName="destStopId" value="" required="required" [(ngModel)]="selectedStop[2]">
+							<option *ngFor="let stop of stops" [value]="stop.id" [disabled]="stop.id == selectedStop[1]">{{stop.name}}</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="tripDuration" class="form-label">Trip Duration(min)</label>
+						<input type="number" class="form-control" id="tripDuration" formControlName="journeyTime" value="" required="required">
+					</div>
+					<div class="mb-3">
+						<label for="fare" class="form-label">Fare</label>
+						<input type="number" class="form-control" id="fare" formControlName="fare" value="" required="required">
+					</div>
+					<div>
+						<button type="submit" class="btn app-btn-primary theme-btn">Add Trip</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>

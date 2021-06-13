@@ -1,0 +1,42 @@
+<div class="row gy-4">
+	<div class="col-12 col-lg-4">
+		<div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+			<div class="app-card-body p-4 w-100 text-center">
+					<img class="px-5" src="assets/images/app-logo.svg" alt="logo">
+					<h2 class="mt-4 h4">{{agency.name}}</h2>
+					<p class="mt-2">{{agency.code}}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-lg-8">
+		<div class="card shadow-sm d-flex flex-column align-items-start">
+			<div class="card-body p-4 w-100">
+				<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && errorMessage != ''">
+					{{ errorMessage }}
+				</div>
+				<div class="alert alert-success alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && successMessage != ''">
+					{{ successMessage }}
+				</div>
+				<form #f="ngForm" (ngSubmit)="onUpdate()" [formGroup]="updateForm">
+					<div class="mb-3">
+						<label for="agencyCode" class="form-label">Agency Code</label>
+						<input type="text" class="form-control" id="agencyCode" formControlName="code" value="{{agency.code}}" required>
+					</div>
+					<div class="mb-3">
+						<label for="agencyName" class="form-label">Agency Name</label>
+						<input type="text" class="form-control" id="agencyName" formControlName="name" value="{{agency.name}}" required>
+					</div>
+					<div class="mb-3">
+						<label for="agencyDetail" class="form-label">Agency Detail</label>
+						<input type="text" class="form-control" id="agencyDetail" formControlName="details" value="{{agency.details}}" required>
+					</div>
+					<div>
+						<button type="submit" class="btn app-btn-primary theme-btn">Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>

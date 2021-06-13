@@ -1,0 +1,68 @@
+<div class="row gy-4">
+	<div class="col-12 col-lg-4">
+		<div class="app-card shadow-sm d-flex flex-column align-items-start">
+			<div class="app-card-body p-4 w-100 text-center">
+					<img class="px-5" src="assets/images/app-logo.svg" alt="logo">
+					<h2 class="mt-4 h4">{{user.username}}</h2>
+					<p class="mt-2">{{user.roles == 'ROLE_ADMIN' ? 'ADMINISTRATOR' : 'USER'}}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-lg-4">
+		<div class="app-card shadow-sm d-flex flex-column align-items-start">
+			<div class="app-card-body p-4 w-100">
+				<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f1.submitted && errorMessage != ''">
+					{{ errorMessage[1] }}
+				</div>
+				<div class="alert alert-success alert-dismissible fade show text-center" role="alert" *ngIf="f1.submitted && successMessage[1] != ''">
+					{{ successMessage[1] }}
+				</div>
+				<form #f1="ngForm" (ngSubmit)="onUpdateProfile()" [formGroup]="updateProfile">
+					<div class="mb-3">
+						<label for="firstName" class="form-label">First Name</label>
+						<input type="text" class="form-control" id="firstName" formControlName="firstName" value="{{user.firstName}}" required="required">
+					</div>
+					<div class="mb-3">
+						<label for="lastName" class="form-label">Last Name</label>
+						<input type="text" class="form-control" id="lastName" formControlName="lastName" value="{{user.lastName}}" required="required">
+					</div>
+					<div class="mb-3">
+						<label for="phoneNumber" class="form-label">Phone Number</label>
+						<input type="text" class="form-control" id="phoneNumber" formControlName="mobileNumber" value="{{user.mobileNumber}}" required="required">
+					</div>
+					<div>
+						<button type="submit" class="btn app-btn-primary theme-btn">Update Profile</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-lg-4">
+		<div class="app-card shadow-sm d-flex flex-column align-items-start">
+			<div class="app-card-body p-4 w-100">
+				<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f2.submitted && errorMessage != ''">
+					{{ errorMessage[2] }}
+				</div>
+				<div class="alert alert-success alert-dismissible fade show text-center" role="alert" *ngIf="f2.submitted && successMessage[2] != ''">
+					{{ successMessage[2] }}
+				</div>
+				<form #f2="ngForm" (ngSubmit)="onUpdatePassword()" [formGroup]="updatePassword">
+					<div class="mb-3">
+						<label for="email" class="form-label">Email</label>
+						<input type="text" class="form-control" id="email" value="{{user.email}}" readonly>
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" class="form-control" id="password" formControlName="password" value="" required="required">
+					</div>
+					<div>
+						<button type="submit" class="btn app-btn-primary theme-btn">Change Password</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>

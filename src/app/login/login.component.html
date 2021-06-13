@@ -1,0 +1,37 @@
+<div class="row g-0 app-auth-wrapper">
+	<div class="col-12 auth-main-col text-center p-5">
+		<div class="d-flex flex-column align-content-end">
+			<div class="app-auth-body mx-auto">	
+				<div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
+				<h2 class="auth-heading text-center mb-5">Log In</h2>
+				<div class="auth-form-container text-start">
+					<form class="auth-form login-form" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>         
+						<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && isLoginFailed">
+							<strong>Login failed!</strong> {{ errorMessage }}
+						</div>
+						<div class="email mb-3 has-validation">
+							<label class="sr-only" for="username">Username</label>
+							<input id="username" name="username" type="text" class="form-control" placeholder="Username" required="required" [(ngModel)]="form.username" #username="ngModel" [ngClass]="username.errors && f.submitted ? 'is-invalid' : ''">
+							<div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+								Username is required!
+								</div>
+						</div>
+						<div class="password mb-3">
+							<label class="sr-only" for="password">Password</label>
+							<input id="password" name="password" type="password" class="form-control" placeholder="Password" required="required" [(ngModel)]="form.password" minlength="6" #password="ngModel" [ngClass]="password.errors && f.submitted ? 'is-invalid' : ''">
+							<div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+								<div *ngIf="password.errors.required">Password is required</div>
+								<div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log In</button>
+						</div>
+					</form>
+					
+					<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link"  routerLink="/register">here</a>.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

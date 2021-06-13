@@ -1,0 +1,52 @@
+<div class="row g-0 app-auth-wrapper">
+	<div class="col-12 auth-main-col text-center p-5">
+		<div class="d-flex flex-column align-content-end">
+			<div class="app-auth-body mx-auto">	
+				<div class="app-auth-branding mb-4"><a class="app-logo"><img class="logo-icon me-2" src="assets/images/app-logo.svg" alt="logo"></a></div>
+				<h2 class="auth-heading text-center mb-4">Sign Up</h2>					
+
+				<div class="auth-form-container text-start mx-auto">
+					<form class="auth-form auth-signup-form" #f="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+						<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="f.submitted && errorMessage != ''">
+							{{ errorMessage }}
+						</div>
+						<div class="email mb-3">
+							<label class="sr-only" for="username">Username</label>
+							<input id="username" formControlName="username" type="text" class="form-control" placeholder="Username" required="required">
+						</div>
+						<div class="email mb-3">
+							<label class="sr-only" for="fistName">First Name</label>
+							<input id="fistName" formControlName="firstName" type="text" class="form-control" placeholder="First Name" required="required">
+						</div>
+						<div class="email mb-3">
+							<label class="sr-only" for="lastName">Last Name</label>
+							<input id="lastName" formControlName="lastName" type="text" class="form-control" placeholder="Last Name" required="required">
+						</div>
+						<div class="email mb-3">
+							<label class="sr-only" for="email">Email</label>
+							<input id="email" formControlName="email" type="email" class="form-control signup-email" placeholder="Email" required="required">
+						</div>
+						<div class="email mb-3">
+							<label class="sr-only" for="mobileNumber">Mobile Number</label>
+							<input id="mobileNumber" formControlName="mobileNumber" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" placeholder="Mobile Number" required="required">
+						</div>
+						<div class="password mb-3">
+							<label class="sr-only" for="password">Password</label>
+							<input id="password" formControlName="password" type="password" class="form-control signup-password" placeholder="Password" required="required">
+						</div>
+						
+						<div class="text-center">
+							<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Sign Up</button>
+						</div>
+					</form>
+					
+					<div class="auth-option text-center pt-5">Already have an account? <a class="text-link" routerLink="/login">Log in</a>.</div>
+				</div>
+				
+				
+				
+			</div><!--//auth-body-->
+		</div><!--//flex-column-->   
+	</div><!--//auth-main-col-->
+
+</div><!--//row-->
